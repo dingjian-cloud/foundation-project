@@ -1,0 +1,43 @@
+#开发环境配置
+server:
+  port: 8080
+  servlet:
+    context-path: /dev
+
+#mysql数据库链接配置
+spring:
+  #热部署生效
+  devtools:
+    restart:
+      enabled: false
+      #设置重启的目录
+      additional-paths: src/main/java
+    livereload:
+      enabled: false
+  # 配置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/demo-app?allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+      username: root
+      password: 123456
+      filters: stat,wall,slf4j,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
